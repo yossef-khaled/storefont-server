@@ -1,8 +1,7 @@
 type Order = {
     id: number;
-    name: string;
-    price: number;
-    category: string;
+    orderStatus: string;
+    userId: number;
 } 
 
 export default Order;

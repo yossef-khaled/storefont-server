@@ -1,7 +1,8 @@
 type Product = {
     id: number;
-    orderStatus: string;
-    userId: number;
+    name: string;
+    price: number;
+    category: string;
 } 
 
 export default Product;
