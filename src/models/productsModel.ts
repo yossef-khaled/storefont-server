@@ -84,7 +84,6 @@ class ProductsModel {
             GROUP BY "productId"
             ORDER BY times_ordered DESC
             LIMIT 5
-            RETURNING *
             ;
             `);
             
