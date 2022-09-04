@@ -1,6 +1,7 @@
 import { Application, Request, Response } from "express";
-import ProductsModel from "src/models/productsModel";
+import ProductsModel from "../models/productsModel";
 import Product from "../entities/product";
+import isAuth from "../utilities/isAuth";
 
 const productsModel = new ProductsModel;
 
@@ -10,17 +11,22 @@ async function index(_: Request, res: Response) {
         console.log(err);
         res.status(400);
         res.send(err.message);
+        return;
     })
     res.status(200);
     res.send(data);
 }
 
 async function show(req: Request, res: Response) {
-    const data = await productsModel.show(parseInt(req.params.id))
+    console.log('Inside show function');
+    const data = req.params['key'] == 'id' ? await productsModel.show(parseInt(req.params['value']))
+    : req.params['key'] == 'category' ? await productsModel.productsByCategory(req.params['value'])
+    : await productsModel.topProducts()
     .catch((err) => {
         console.log(err);
         res.status(400);
         res.send(err.message);
+        return;
     })
     res.status(200);
     res.send(data);
@@ -39,27 +45,7 @@ async function create(req: Request, res: Response) {
         console.log(err);
         res.status(400);
         res.send(err.message);
-    })
-    res.status(200);
-    res.send(data);
-}
-
-async function productsByCategory(req: Request, res: Response) {
-    const data = await productsModel.productsByCategory(req.params.category)
-    .catch((err) => {
-        console.log(err);
-        res.status(400);
-        res.send(err.message);
-    })
-    res.status(200);
-    res.send(data);
-}
-
-async function topProducts(_: Request, res: Response) {
-    const data = await productsModel.topProducts()
-    .catch((err) => {
-        res.status(400);
-        res.send(err.message)
+        return;
     })
     res.status(200);
     res.send(data);
@@ -67,10 +53,8 @@ async function topProducts(_: Request, res: Response) {
 
 const productsRoutes = (app: Application) => {
     app.get('/products', index);
-    app.get('/products/:id', show);
-    app.post('/products', create);
-    app.get('/products/:category', productsByCategory);
-    app.post('/products/top5', topProducts);
+    app.get('/products/:key=:value', show);
+    app.post('/products', isAuth, create);
 }
 
 export default productsRoutes;
