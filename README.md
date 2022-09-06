@@ -11,24 +11,24 @@ In the project directory, you can run:
 
  `yarn build`
 ### - To build the application
-
+***
 
  `yarn watch`
 ### - To build the application and make tsc watch for changes
-
+***
 
  `yarn test`
 ### - To run the test units
-
+***
 
 `yarn dev`
 ### - To run the index.js file 
 *Will listen on port 3000*  
-
+***
 
 ### End points for each model :
 
-#### Users :
+### Users :
 
 ##### - index :
 - `Route`: /users
@@ -53,7 +53,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSw
     password: *STRING*
 }
  
-#### products :
+### products :
 
 ##### - index :
 - `Route`: /products
@@ -85,7 +85,7 @@ products/addToCart=1 Will add
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
  
 
-#### orders :
+### orders :
 
 ##### - order history :
 - `Route`: /orders
