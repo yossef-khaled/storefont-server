@@ -1,4 +1,4 @@
-```diff
+
 # storefront-server
 
 ## First, you need to install the packages listed in the `package.json` file using:
@@ -107,4 +107,3 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSw
 - `Action` post
 - `Header` Authorization - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
-```
