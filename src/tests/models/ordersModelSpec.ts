@@ -1,15 +1,8 @@
 import OrdersModel from "../../models/ordersModel";
-import dotenv from 'dotenv';
 
 const ordersModel: OrdersModel = new OrdersModel;
 
-dotenv.config();
-
 describe('Orders model', () => {
-    beforeEach(() => {
-        process.env.ENV = 'test';
-    });
-   
     it('should have an orders history method', () => {
         expect(ordersModel.ordersHistory).toBeDefined();
     });

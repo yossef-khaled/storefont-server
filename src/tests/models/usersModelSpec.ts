@@ -1,17 +1,9 @@
 import UsersModel from "../../models/usersModel";
 import User from "../../entities/user";
-import dotenv from 'dotenv';
-
-dotenv.config();
-process.env.ENV = 'test';
 
 const usersModel: UsersModel = new UsersModel;
 
 describe('Users model', () => {
-     beforeEach(() => {
-        console.log(process.env.ENV);
-     });
-
     it('should have an index method', () => {
         expect(usersModel.index).toBeDefined();
     });

@@ -1,16 +1,9 @@
 import ProductsModel from "../../models/productsModel";
 import Product from "../../entities/product";
-import dotenv from 'dotenv';
 
 const productsModel: ProductsModel = new ProductsModel;
 
-dotenv.config();
-
 describe('Products model', () => {
-    beforeEach(() => {
-        process.env.ENV = 'test';
-    });
-
     it('should have an index method', () => {
         expect(productsModel.index).toBeDefined();
     });
