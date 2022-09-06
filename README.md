@@ -31,7 +31,8 @@ In the project directory, you can run:
 
 ### **Users** :
 
-&nbsp;&nbsp;&nbsp;&nbsp;- index :
+&nbsp;&nbsp;&nbsp;&nbsp; 
+#### - index :
 - `Route`: /users
 - `Action` get
 - `Header` Authorization - `Value` for example : 
