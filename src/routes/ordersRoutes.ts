@@ -1,11 +1,15 @@
 import { Application, Request, Response } from "express";
 import isAuth from "../utilities/isAuth";
 import OrdersModel from "../models/ordersModel";
+import extractDataFromToken from "../utilities/extractDataFromToken";
 
 const ordersModel = new OrdersModel;
 
 async function ordersHistory(req: Request, res: Response) {
-    const data = await ordersModel.ordersHistory(req.body.userId)
+    const token = req.headers.authorization ? req.headers.authorization?.split(' ')[1] : '';
+    const userData = extractDataFromToken(token);
+
+    const data = await ordersModel.ordersHistory(userData.id)
     .catch((err) => {
         console.log(err);
         res.status(400);
@@ -17,7 +21,10 @@ async function ordersHistory(req: Request, res: Response) {
 }
 
 async function currentOrder(req: Request, res: Response) {
-    const data = await ordersModel.currentOrder(parseInt(req.body.userId))
+    const token = req.headers.authorization ? req.headers.authorization?.split(' ')[1] : '';
+    const userData = extractDataFromToken(token);
+
+    const data = await ordersModel.currentOrder(userData.id)
     .catch((err) => {
         console.log(err);
         res.status(400);
@@ -29,7 +36,10 @@ async function currentOrder(req: Request, res: Response) {
 }
 
 async function create(req: Request, res: Response) {
-    const data = await ordersModel.create(req.body.userId)
+    const token = req.headers.authorization ? req.headers.authorization?.split(' ')[1] : '';
+    const userData = extractDataFromToken(token);
+
+    const data = await ordersModel.create(userData.id)
     .catch((err) => {
         console.log(err);
         res.status(400);
@@ -42,7 +52,7 @@ async function create(req: Request, res: Response) {
 
 const ordersRoutes = (app: Application) => {
     app.get('/orders', isAuth, ordersHistory);
-    app.get('/orders/currentOrder', isAuth, currentOrder);
+    app.get('/orders/current', isAuth, currentOrder);
     app.post('/orders', isAuth, create);
 }
 
