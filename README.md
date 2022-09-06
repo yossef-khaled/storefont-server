@@ -3,10 +3,10 @@
 
 ## First, you need to install the packages listed in the `package.json` file using:
 
-<span style="color: blue">
-    ### `yarn install`
-</span>
 
+### `yarn install`
+
+<span style="color: red;">text</span>
 
 ### Available Scripts
 In the project directory, you can run:
