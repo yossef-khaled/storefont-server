@@ -24,5 +24,5 @@ productsRoutes(app);
 ordersRoutes(app);
 
 app.listen(3000, function () {
-    console.log(`🚀🚀 Storefont server started on port ${port}...`);
+    console.log(`🚀🚀 Storefront server started on port ${port}...`);
 })
