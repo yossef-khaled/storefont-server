@@ -56,7 +56,10 @@ async function create(req: Request, res: Response) {
     })
     const token = createToken(data!)
     res.status(200);
-    res.send(data);
+    res.send({
+        token,
+        data
+    });
 }
 
 const usersRoute = (app: Application) => {
