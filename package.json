@@ -6,12 +6,11 @@
     "build": "tsc",
     "dev": "nodemon dist/index.js",
     "jasmine": "jasmine",
-    "test": "ENV='test' db-migrate db:create storefront_db_test && db-migrate --env test up && yarn build && yarn jasmine && db-migrate db:drop storefront_db_test",
+    "test": "export ENV=test && db-migrate db:create storefront_db_test && db-migrate --env test up && yarn jasmine; db-migrate db:drop storefront_db_test",
     "watch": "tsc -w"
   },
   "license": "MIT",
   "dependencies": {
-    "cross-env": "^7.0.3",
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
     "dotenv": "^16.0.2",
