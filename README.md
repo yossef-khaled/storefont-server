@@ -52,7 +52,9 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSw
     lastname: *STRING*, 
     password: *STRING*
 }
- 
+
+*** 
+
 ### products :
 
    ##### - index :
@@ -84,6 +86,7 @@ products/addToCart=1 Will add
 - `Header` Authorization - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
  
+***
 
 ### orders :
 
