@@ -5,7 +5,7 @@ import User from "../entities/user";
 function createToken(user: User): string {
     const token = Jwt.sign(
         {
-            username: `${user.firstname}${user.lastname}`, 
+            username: `${user.firstname}_${user.lastname}`, 
             id: user.id
         }, 
         `${process.env.TOKEN_SECRET}`
