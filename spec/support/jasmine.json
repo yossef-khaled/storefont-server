@@ -1,0 +1,15 @@
+{
+    "spec_dir": "dist/tests",
+    "spec_files": [
+        "models/usersModelSpec.js",
+        "models/productsModelSpec.js",
+        "models/ordersModelSpec.js",
+        "models/cartSpec.js"
+        
+    ],
+    "helpers": [
+        "helpers/**/*.js"
+    ],
+    "stopSpecOnExpectationFailure": false,
+    "random": false
+}
