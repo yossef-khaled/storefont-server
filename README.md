@@ -31,19 +31,19 @@ In the project directory, you can run:
 
 ### **Users** :
 
-&nbsp;&nbsp;&nbsp; #### - index :
+&nbsp;&nbsp;&nbsp;&nbsp;- index :
 - `Route`: /users
 - `Action` get
 - `Header` Authorization - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
 
-   #### - show :
+&nbsp;&nbsp;&nbsp;&nbsp;- show :
 - `Route`: /users/:id
 - `Action` get
 - `Header` Authorization - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
  
-   #### - create :
+&nbsp;&nbsp;&nbsp;&nbsp;- create :
 - `Route`: /users
 - `Action` post
 - `Header` Authorization - `Value` for example : 
@@ -58,18 +58,18 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSw
 
 ### products :
 
-   ##### - index :
+&nbsp;&nbsp;&nbsp;&nbsp;- index :
 - `Route`: /products
 - `Action` get
 
-   ##### - show :
+&nbsp;&nbsp;&nbsp;&nbsp;- show :
 - `Routes`: /products/key=:key&value=:Value for example :
 /products/key=id&value=1 Will show product with id = 1
 /products/key=category&value=Kitchen Will show products with category = Kitchen
 /products/key=topProducts&value=5 Will show top 5 products
 - `Action` get
 
-   ##### - create :
+&nbsp;&nbsp;&nbsp;&nbsp;- create :
 - `Route`: /products
 - `Action` post
 - `Header` Authorization - `Value` for example : 
@@ -80,7 +80,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSw
     category: *STRING*
 } 
  
-   ##### - add product to cart (orders that has a status = 'inCart' are refered to  as carts) :
+&nbsp;&nbsp;&nbsp;&nbsp;- add product to cart (orders that has a status = 'inCart' are refered to  as carts) :
 - `Route`: /products/addToCart=:orderId for example :
 products/addToCart=1 Will add 
 - `Action` post
@@ -91,19 +91,19 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSw
 
 ### orders :
 
-   ##### - order history :
+&nbsp;&nbsp;&nbsp;&nbsp;- order history :
 - `Route`: /orders
 - `Action` get
 - `Header` Authorization - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
 
-   ##### - current order :
+&nbsp;&nbsp;&nbsp;&nbsp;- current order :
 - `Route`: /orders/current
 - `Action` get
 - `Header` Authorization - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
 
-   ##### - create an order :
+&nbsp;&nbsp;&nbsp;&nbsp;- create an order :
 - `Route`: /orders
 - `Action` post
 - `Header` Authorization - `Value` for example : 
