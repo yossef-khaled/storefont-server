@@ -6,7 +6,6 @@
 
 ### `yarn install`
 
-<span style="color: red;">text</span>
 
 ### Available Scripts
 In the project directory, you can run:
@@ -30,21 +29,21 @@ In the project directory, you can run:
 
 ### End points for each model :
 
-### Users :
+### **Users** :
 
-   ##### - index :
+   #### - index :
 - `Route`: /users
 - `Action` get
 - `Header` Authorization - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
 
-   ##### - show :
+   #### - show :
 - `Route`: /users/:id
 - `Action` get
 - `Header` Authorization - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
  
-   ##### - create :
+   #### - create :
 - `Route`: /users
 - `Action` post
 - `Header` Authorization - `Value` for example : 
