@@ -3,7 +3,9 @@
 
 ## First, you need to install the packages listed in the `package.json` file using:
 
-### `yarn install`
+<span style="color: blue">
+    ### `yarn install`
+</span>
 
 
 ### Available Scripts
