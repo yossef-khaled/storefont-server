@@ -18,10 +18,9 @@ async function index(_: Request, res: Response) {
 }
 
 async function show(req: Request, res: Response) {
-    console.log('Inside show function');
     const data = req.params['key'] == 'id' ? await productsModel.show(parseInt(req.params['value']))
     : req.params['key'] == 'category' ? await productsModel.productsByCategory(req.params['value'])
-    : await productsModel.topProducts()
+    : await productsModel.topProducts(parseInt(req.params['value']))
     .catch((err) => {
         console.log(err);
         res.status(400);
@@ -51,10 +50,23 @@ async function create(req: Request, res: Response) {
     res.send(data);
 }
 
+async function addToCart(req: Request, res: Response) {
+    const data = await productsModel.addToCart(parseInt(req.params.orderId), req.body.productId, req.body.quantity)
+    .catch((err) => {
+        console.log(err);
+        res.status(400);
+        res.send(err.message);
+        return;
+    })
+    res.status(200);
+    res.send(data);
+}
+
 const productsRoutes = (app: Application) => {
     app.get('/products', index);
-    app.get('/products/:key=:value', show);
+    app.get('/products/key=:key&value=:value', show);
     app.post('/products', isAuth, create);
+    app.post('/products/addToCart=:orderId', isAuth, addToCart);
 }
 
 export default productsRoutes;
