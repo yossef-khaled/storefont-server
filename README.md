@@ -6,8 +6,8 @@
 
 ### `yarn install`
 
-Then, you need to build the app with `yarn build`
-**NOTE : This command will create the DB, the tables, & build the app into JS code
+### Then, you need to build the app with `yarn build`
+**NOTE : This command will create the DB, the tables, & build the app into JS code**
 
 #### Default PORT is : `3000`
 
