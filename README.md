@@ -11,7 +11,7 @@
 In the project directory, you can run:
 
  `yarn build`
-### - To create a database & then build the application
+### - To create the database, tables & then build the application
 ***
 
  `yarn watch`
