@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "db-migrate db:create storefront_db; tsc",
+    "build": "db-migrate db:create storefront_db && db-migrate up && tsc",
     "dev": "nodemon dist/index.js",
     "jasmine": "jasmine",
     "test": "export ENV=test && db-migrate db:create storefront_db_test && db-migrate --env test up && yarn jasmine; db-migrate db:drop storefront_db_test",
