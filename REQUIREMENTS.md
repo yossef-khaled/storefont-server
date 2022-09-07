@@ -11,7 +11,7 @@
 #### Table users, unique with (id) :
 
 |     column    |     Type                |
-|---------------|-------------------------|
+|   :---        |         ---:            |
 | id            | SERIAL PRIMARY KEY      |
 | firstname     | VARCHAR(50)             |
 | lastname      | VARCHAR(50)             |
