@@ -34,19 +34,19 @@ In the project directory, you can run:
 #### - index :
 - `Route`: /users
 - `Action` get
-- `Header` Authorization - `Value` for example : 
+- `Header` Authorization for token - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
 
 #### - show :
 - `Route`: /users/:id
 - `Action` get
-- `Header` Authorization - `Value` for example : 
+- `Header` Authorization for token - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
  
 #### - create :
 - `Route`: /users
 - `Action` post
-- `Header` Authorization - `Value` for example : 
+- `Header` Authorization for token - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
 - `Body` {
     firstname: *STRING*, 
@@ -72,7 +72,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSw
 #### - create :
 - `Route`: /products
 - `Action` post
-- `Header` Authorization - `Value` for example : 
+- `Header` Authorization for token - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
 - `Body` {
     name: *STRING*, 
@@ -84,7 +84,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSw
 - `Route`: /products/addToCart=:orderId for example :
 products/addToCart=1 Will add 
 - `Action` post
-- `Header` Authorization - `Value` for example : 
+- `Header` Authorization for token - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
  
 ***
@@ -94,17 +94,17 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSw
 #### - order history :
 - `Route`: /orders
 - `Action` get
-- `Header` Authorization - `Value` for example : 
+- `Header` Authorization for token - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
 
 #### - current order :
 - `Route`: /orders/current
 - `Action` get
-- `Header` Authorization - `Value` for example : 
+- `Header` Authorization for token - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
 
 #### - create an order :
 - `Route`: /orders
 - `Action` post
-- `Header` Authorization - `Value` for example : 
+- `Header` Authorization for token - `Value` for example : 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NSwiaWF0IjoxNjYyNDc2MTUwfQ.IzhpuSRZowqLnaWe4ewBFn0n9-5oSveijRjwwP6HNqc
