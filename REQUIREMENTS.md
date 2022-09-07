@@ -1,12 +1,12 @@
 
 ### All the tables of the schema
-     Schema |     Name      | Type  |  Owner   
-------------+---------------+-------+----------
-     public |   migrations  | table | postgres
-     public | order_product | table | postgres
-     public | orders        | table | postgres
-     public | products      | table | postgres
-     public | users         | table | postgres
+|    Schema |     Name      | Type  |  Owner   | 
+|-----------|---------------|-------|--------- |
+|    public |   migrations  | table | postgres |
+|    public | order_product | table | postgres |
+|    public | orders        | table | postgres |
+|    public | products      | table | postgres |
+|    public | users         | table | postgres |
 
 #### Table users, unique with (id) :
 
