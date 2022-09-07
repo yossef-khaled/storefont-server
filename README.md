@@ -15,7 +15,7 @@ In the project directory, you can run:
 ***
 
  `yarn watch`
-### - To build the application and make tsc watch for changes
+### - To build the application & watch for changes in TS files
 ***
 
  `yarn test`
