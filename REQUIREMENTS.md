@@ -10,22 +10,22 @@
 
 #### Table users, unique with (id) :
 
- column    |     Type          
------------+-------------------------+
- id        | SERIAL PRIMARY KEY      |
- firstname | VARCHAR(50)             |
- lastname  | VARCHAR(50)             |
- password  | VARCHAR(50)             |
+     column    |     Type          
+---------------+-------------------------+
+ id            | SERIAL PRIMARY KEY      |
+ firstname     | VARCHAR(50)             |
+ lastname      | VARCHAR(50)             |
+ password      | VARCHAR(50)             |
  
 
 #### Table products, unique with (id) :
 
-  column   |         Type          
------------+------------------------+
- id        | SERIAL PRIMARY KEY     |
- name      | VARCHAR(50)            |
- price     | FLOAT                  |
- category  | VARCHAR(50)            |
+    column    |         Type          
+--------------+------------------------+
+ id           | SERIAL PRIMARY KEY     |
+ name         | VARCHAR(50)            |
+ price        | FLOAT                  |
+ category     | VARCHAR(50)            |
 
 
 #### Table orders, unique with (id) :
