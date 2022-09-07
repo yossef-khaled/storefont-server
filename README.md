@@ -6,6 +6,7 @@
 
 ### `yarn install`
 
+#### Default PORT is : `3000`
 
 ### Available Scripts
 In the project directory, you can run:
