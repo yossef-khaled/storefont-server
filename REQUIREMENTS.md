@@ -48,3 +48,4 @@
 | quantity   | INT                                                        |
 
 
+**NOTE: For tests you can run `yarn test`** 
