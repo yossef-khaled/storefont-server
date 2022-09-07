@@ -19,16 +19,15 @@ class OrdersModel {
         }
     }
 
-    async ordersHistory(id: number): Promise<Order[]> {
+    async ordersHistory(userId: number): Promise<Order[]> {
         try {
             const connection = await client.connect();
         
             const data = await connection.query(`
-            SELECT * FROM orders WHERE orders."userId" = $1 
-            AND orders."orderStatus" = 'complete'
+            SELECT * FROM orders WHERE orders."userId" = $1
             ;
             `
-            , [id]);
+            , [userId]);
             
             connection.release();
             
