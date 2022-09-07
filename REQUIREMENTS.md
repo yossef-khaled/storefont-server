@@ -8,7 +8,7 @@
 |    public | products      | table  | postgres |
 |    public | users         | table  | postgres |
 
-#### Table users, unique with (id) :
+#### Table `users` , unique with (id) :
 
 |     column    |     Type                |
 |---------------|-------------------------|
@@ -18,7 +18,7 @@
 | password      | VARCHAR(50)             |
  
 
-#### Table products, unique with (id) :
+#### Table `products`, unique with (id) :
 
 |    column    |         Type           |
 |--------------|------------------------|
@@ -28,7 +28,7 @@
 | category     | VARCHAR(50)            |
 
 
-#### Table orders, unique with (id) :
+#### Table `orders`, unique with (id) :
 
 |    column    |                             Type                         |
 |--------------|----------------------------------------------------------|
@@ -38,7 +38,7 @@
 
 
 
-#### Table order_product, unique with (foregin key orderId, foregin key productId) :
+#### Table `order_product`, unique with (foregin key orderId, foregin key productId) :
 #### This table holds the recordes from the Many-To-Many relationship between `orders` and `products`
 
 |    column  |                         Type                               |
