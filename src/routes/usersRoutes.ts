@@ -65,7 +65,7 @@ async function create(req: Request, res: Response) {
 const usersRoute = (app: Application) => {
     app.get('/users', isAuth, index);
     app.get('/users/:id', isAuth, show);
-    app.post('/users', isAuth, create);
+    app.post('/users', create);
 }
 
 export default usersRoute;
