@@ -9,7 +9,8 @@
 ### Then, you need to build the app with `yarn build`
 **NOTE : This command will create the DB, the tables, & build the app into JS code**
 
-#### Default PORT is : `3000`
+#### Backend PORT is: `3000`
+#### Backend PORT is: `5432`
 
 ### Available Scripts
 In the project directory, you can run:
