@@ -1,5 +1,5 @@
 import UsersModel from "../../models/usersModel";
-import User from "../../entities/user";
+import request from "supertest";
 
 const usersModel: UsersModel = new UsersModel;
 
@@ -17,43 +17,40 @@ describe('Users model', () => {
     });
 
     it('should return a user after creating one', async () => {
-        //@ts-ignore
-        const user: User = {
-            id: 1,
+        
+        request('localhost:3000')
+        .post('/users')
+        .send({
             firstname: 'Test',
             lastname: 'User',
-            password: "P@ssw0rd"
-        }
-        const expectedResult = await usersModel.create(user);
-        //@ts-ignore
-        expect(expectedResult)
-        .toEqual(user);
+            password: 'P@ssword'
+        })
+        .expect(200)
     });
 
     it('should show all users', async () => {
-        // 
-        const expectedResult: User[] = await usersModel.index();
-        //@ts-ignore
-        expect(expectedResult)
-        .toEqual([{
-            id: 1,
-            firstname: 'Test',
-            lastname: 'User',
-            password: "P@ssw0rd" 
-        }]);
+        
+        const tokenHeader = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
+        }
+
+        request('localhost:3000')
+        .get('/users')
+        .set(tokenHeader)
+        .expect(200)
+
     });
 
     it('should show user with id = 1', async () => {
-        // 
-        const expectedResult: User = await usersModel.show(1);
-        //@ts-ignore
-        expect(expectedResult)
-        .toEqual({
-            id: 1,
-            firstname: 'Test',
-            lastname: 'User',
-            password: "P@ssw0rd" 
-        });
+        
+        const tokenHeader = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
+        }
+
+        request('localhost:3000')
+        .get('/users/1')
+        .set(tokenHeader)
+        .expect(200)
     });
 
 })

@@ -1,5 +1,6 @@
 import ProductsModel from "../../models/productsModel";
 import Product from "../../entities/product";
+import request from 'supertest';
 
 const productsModel: ProductsModel = new ProductsModel;
 
@@ -25,56 +26,55 @@ describe('Products model', () => {
     });
 
     it('should return a product after creating one', async () => {
-        //@ts-ignore
-        const product: Product = {
-            id: 1,
-            name: 'Test Product',
-            category: 'Test Category',
-            price: 50,
+
+        const tokenHeader = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
         }
-        const expectedResult = await productsModel.create(product);
-        //@ts-ignore
-        expect(expectedResult)
-        .toEqual(product);
+
+        request('localhost:3000')
+        .post('/products')
+        .set(tokenHeader)
+        .send({
+            name: 'Test Product',
+            category: 'Test_Category',
+            price: 50
+        })
+        .expect(200)
     });
 
     it('should return all products', async () => {
-       
-        const expectedResult: Product[] = await productsModel.index();
-        //@ts-ignore
-        expect(expectedResult)
-        .toEqual([{
-            id: 1,
-            name: 'Test Product',
-            category: 'Test Category',
-            price: 50 
-        }]);
+        const tokenHeader = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
+        }
+
+        request('localhost:3000')
+        .get('/products')
+        .set(tokenHeader)
+        .expect(200)
     });
 
     it('should return product with id = 1 ', async () => {
        
-        const expectedResult: Product = await productsModel.show(1);
-        //@ts-ignore
-        expect(expectedResult)
-        .toEqual({
-            id: 1,
-            name: 'Test Product',
-            category: 'Test Category',
-            price: 50 
-        });
+        const tokenHeader = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
+        }
+
+        request('localhost:3000')
+        .get('/products/key=id&value=1')
+        .set(tokenHeader)
+        .expect(200)
     });
 
-    it('should return products under the category Test Category ', async () => {
+    it('should return products under the category Test_Category', async () => {
        
-        const expectedResult: Product[] = await productsModel.productsByCategory('Test Category');
-        //@ts-ignore
-        expect(expectedResult)
-        .toEqual([{
-            id: 1,
-            name: 'Test Product',
-            category: 'Test Category',
-            price: 50 
-        }]);
+        const tokenHeader = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
+        }
+
+        request('localhost:3000')
+        .post('/products/key=category&value=Test_Category')
+        .set(tokenHeader)
+        .expect(200)
     });
 
 })

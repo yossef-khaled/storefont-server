@@ -1,4 +1,5 @@
 import OrdersModel from "../../models/ordersModel";
+import request from "supertest";
 
 const ordersModel: OrdersModel = new OrdersModel;
 
@@ -16,33 +17,38 @@ describe('Orders model', () => {
     });
 
     it('should create a new order', async () => {
-        const expectedResult = await ordersModel.create(1);
-        expect(expectedResult)
-        .toEqual({
-            id: 1,
-            orderStatus: 'inCart',
-            userId: 1
-        });
+
+        const tokenHeader = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
+        }
+
+        request('localhost:3000')
+        .post('/orders')
+        .set(tokenHeader)
+        .expect(200)
     });
 
     it('should get the orders history for the user', async () => {
-        const expectedResult = await ordersModel.ordersHistory(1);
-        expect(expectedResult)
-        .toEqual([{
-            id: 1,
-            orderStatus: 'inCart',
-            userId: 1
-        }]);
+        const tokenHeader = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
+        }
+
+        request('localhost:3000')
+        .get('/orders')
+        .set(tokenHeader)
+        .expect(200)
     });
 
     it('current order method should return the current order', async () => {
         
-        const expectedResult = await ordersModel.currentOrder(1);
-        expect(expectedResult).toEqual({
-            id: 1,
-            orderStatus: 'inCart',
-            userId: 1
-        })
+        const tokenHeader = {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
+        }
+
+        request('localhost:3000')
+        .get('/orders')
+        .set(tokenHeader)
+        .expect(200)
     });
 
 })
