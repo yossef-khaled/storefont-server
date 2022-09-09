@@ -5,7 +5,7 @@ import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
 
 //Import routes
-import usersRoute from './routes/usersRoutes'
+import usersRoutes from './routes/usersRoutes'
 import productsRoutes from './routes/productsRoutes'
 import ordersRoutes from './routes/ordersRoutes'
 
@@ -19,7 +19,7 @@ app.get('/', function (_: Request, res: Response) {
 })
 
 // call all the routes
-usersRoute(app);
+usersRoutes(app);
 productsRoutes(app);
 ordersRoutes(app);
 
