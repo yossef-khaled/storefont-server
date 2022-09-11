@@ -31,26 +31,23 @@ describe('Products model', () => {
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
         }
 
-        request('localhost:3000')
+        const response = await request('localhost:3000')
         .post('/products')
         .set(tokenHeader)
         .send({
+            id: 1,
             name: 'Test Product',
             category: 'Test_Category',
             price: 50
         })
-        .expect(200)
-    });
 
-    it('should return all products', async () => {
-        const tokenHeader = {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
-        }
-
-        request('localhost:3000')
-        .get('/products')
-        .set(tokenHeader)
-        .expect(200)
+        expect(response.statusCode).toEqual(200);
+        expect(response.body).toEqual({
+            id: 1,
+            name: 'Test Product',
+            category: 'Test_Category',
+            price: 50
+        });
     });
 
     it('should return product with id = 1 ', async () => {
@@ -59,10 +56,17 @@ describe('Products model', () => {
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
         }
 
-        request('localhost:3000')
+        const response = await request('localhost:3000')
         .get('/products/key=id&value=1')
         .set(tokenHeader)
-        .expect(200)
+        
+        expect(response.body).toEqual({
+            id: 1,
+            name: 'Test Product',
+            category: 'Test_Category',
+            price: 50
+        })
+        expect(response.statusCode).toEqual(200)
     });
 
     it('should return products under the category Test_Category', async () => {
@@ -71,10 +75,77 @@ describe('Products model', () => {
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
         }
 
-        request('localhost:3000')
-        .post('/products/key=category&value=Test_Category')
+        const response = await request('localhost:3000')
+        .get('/products/key=category&value=Test_Category')
         .set(tokenHeader)
-        .expect(200)
+        
+        expect(response.body).toEqual([{
+            id: 1,
+            name: 'Test Product',
+            category: 'Test_Category',
+            price: 50
+        }])
+        expect(response.statusCode).toEqual(200)
+    });
+
+
+    it('should return a product after creating one', async () => {
+        const product: Product = {
+            id: 2,
+            name: 'Test Product2',
+            category: 'Test_Category',
+            price: 40,
+        }
+        const expectedResult = await productsModel.create(product);
+        expect(expectedResult)
+        .toEqual(product);
+    });
+
+    it('should return all products', async () => {
+       
+        const expectedResult: Product[] = await productsModel.index();
+        expect(expectedResult)
+        .toEqual([{
+            id: 1,
+            name: 'Test Product',
+            category: 'Test_Category',
+            price: 50 
+        }, {
+            id: 2,
+            name: 'Test Product2',
+            category: 'Test_Category',
+            price: 40,
+        }]);
+    });
+
+    it('should return product with id = 2', async () => {
+       
+        const expectedResult: Product = await productsModel.show(2);
+        expect(expectedResult)
+        .toEqual({
+            id: 2,
+            name: 'Test Product2',
+            category: 'Test_Category',
+            price: 40
+        });
+    });
+
+    it('should return products under the category Test Category ', async () => {
+       
+        const expectedResult: Product[] = await productsModel.productsByCategory('Test_Category');
+        
+        expect(expectedResult)
+        .toEqual([{
+            id: 1,
+            name: 'Test Product',
+            category: 'Test_Category',
+            price: 50 
+        }, {
+            id: 2,
+            name: 'Test Product2',
+            category: 'Test_Category',
+            price: 40,
+        }]);
     });
 
 })

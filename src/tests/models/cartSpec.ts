@@ -1,39 +1,53 @@
-import dotenv from 'dotenv';
+import User from "src/entities/user";
+import createToken from "../../utilities/createToken";
 import request from "supertest";
 
-dotenv.config();
+const firstUser: User = {
+    id: 1,
+    firstname: 'Test',
+    lastname: 'User',
+    password: 'P@ssw0rd'
+};
+
+let firstUserAuthHeader: object;
+
 
 describe('Cart', () => {
 
-    beforeEach(() => {
-        process.env.ENV = 'test';
-    });
-    
+    beforeAll(() => {
+        const firstUserToken = createToken(firstUser);
+
+        firstUserAuthHeader = {'Authorization': `Bearer ${firstUserToken}`};
+    })
+
     it('should add a product to cart', async () => {
 
-        const tokenHeader = {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
-        }
-
-        request('localhost:3000')
+        const response = await request('localhost:3000')
         .post('/products/addToCart=1')
-        .set(tokenHeader)
+        .set(firstUserAuthHeader)
         .send({
             productId: 1,
             quantity: 3
         })
-        .expect(200)
+
+        expect(response.body).toEqual({
+            orderId: 1,
+            productId: 1,
+            quantity: 3
+        })
+        expect(response.statusCode).toEqual(200)
     });
 
     it('should return top product', async () => {
+    
+        const response = await request('localhost:3000')
+        .get('/products/key=topProducts&value=1')
+        .set(firstUserAuthHeader)
         
-        const tokenHeader = {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
-        }
-
-        request('localhost:3000')
-        .post('/products/key=topProduct&value=1')
-        .set(tokenHeader)
-        .expect(200)
+        expect(response.body).toEqual([{
+            productId: 1,
+            timesOrdered: 1
+        }])
+        expect(response.statusCode).toEqual(200);
     });
 })

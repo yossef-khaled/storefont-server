@@ -1,9 +1,27 @@
 import UsersModel from "../../models/usersModel";
 import request from "supertest";
+import User from "src/entities/user";
 
 const usersModel: UsersModel = new UsersModel;
 
+const firstUser: User = {
+    id: 1,
+    firstname: 'Test',
+    lastname: 'User',
+    password: 'P@ssw0rd'
+};
+
+const secondUser: User = {
+    id: 2,
+    firstname: 'Test',
+    lastname: 'User2',
+    password: 'P@ssw0rd'
+};
+
+let firstUserAuthHeader: object;
+
 describe('Users model', () => {
+
     it('should have an index method', () => {
         expect(usersModel.index).toBeDefined();
     });
@@ -18,39 +36,48 @@ describe('Users model', () => {
 
     it('should return a user after creating one', async () => {
         
-        request('localhost:3000')
+        const response = await request('localhost:3000')
         .post('/users')
-        .send({
+        .send(firstUser)
+
+        firstUserAuthHeader = {'Authorization': `Bearer ${response.body.token}`};
+        
+        expect(response.statusCode).toEqual(200);
+        expect(response.body.data).toEqual({
+            id: 1,
             firstname: 'Test',
             lastname: 'User',
-            password: 'P@ssword'
-        })
-        .expect(200)
-    });
-
-    it('should show all users', async () => {
-        
-        const tokenHeader = {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
-        }
-
-        request('localhost:3000')
-        .get('/users')
-        .set(tokenHeader)
-        .expect(200)
-
+            password: 'P@ssw0rd'
+        });
     });
 
     it('should show user with id = 1', async () => {
-        
-        const tokenHeader = {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
-        }
 
         request('localhost:3000')
         .get('/users/1')
-        .set(tokenHeader)
+        .set(firstUserAuthHeader)
         .expect(200)
+    });
+
+
+    it('should return a user after creating one', async () => {
+        
+        const expectedResult = await usersModel.create(secondUser);
+        
+        expect(expectedResult)
+        .toEqual(secondUser);
+    });
+
+    it('should show all users', async () => {
+        const expectedResult: User[] = await usersModel.index();
+        expect(expectedResult)
+        .toEqual([firstUser, secondUser]);
+    });
+
+    it('should show user with id = 2', async () => {
+        const expectedResult: User = await usersModel.show(2);
+        expect(expectedResult)
+        .toEqual(secondUser);
     });
 
 })

@@ -1,9 +1,27 @@
 import OrdersModel from "../../models/ordersModel";
 import request from "supertest";
+import createToken from "../../utilities/createToken";
+import User from "src/entities/user";
+import Order from "src/entities/order";
 
 const ordersModel: OrdersModel = new OrdersModel;
 
+const firstUser: User = {
+    id: 1,
+    firstname: 'Test',
+    lastname: 'User',
+    password: 'P@ssw0rd'
+};
+
+let firstUserAuthHeader: object;
+
 describe('Orders model', () => {
+    beforeAll(() => {
+        const firstUserToken = createToken(firstUser);
+
+        firstUserAuthHeader = {'Authorization': `Bearer ${firstUserToken}`};
+    })
+    
     it('should have an orders history method', () => {
         expect(ordersModel.ordersHistory).toBeDefined();
     });
@@ -16,39 +34,76 @@ describe('Orders model', () => {
         expect(ordersModel.create).toBeDefined();
     });
 
-    it('should create a new order', async () => {
+    it('should return a new order after creating one', async () => {
 
-        const tokenHeader = {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
-        }
-
-        request('localhost:3000')
+        const response = await request('localhost:3000')
         .post('/orders')
-        .set(tokenHeader)
-        .expect(200)
+        .set(firstUserAuthHeader)
+        
+        expect(response.body).toEqual({
+            id: 1,
+            orderStatus: 'inCart',
+            userId: 1
+        })
+        expect(response.statusCode).toEqual(200);
     });
 
     it('should get the orders history for the user', async () => {
-        const tokenHeader = {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
-        }
-
-        request('localhost:3000')
+        
+        const response = await request('localhost:3000')
         .get('/orders')
-        .set(tokenHeader)
-        .expect(200)
+        .set(firstUserAuthHeader)
+        
+        expect(response.body).toEqual([{
+            id: 1,
+            orderStatus: 'inCart',
+            userId: 1
+        }])
+        expect(response.statusCode).toEqual(200);
     });
 
     it('current order method should return the current order', async () => {
         
-        const tokenHeader = {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3RfVXNlciIsImlkIjo4NywiaWF0IjoxNjYyNjUwMjQwfQ.duLlc1-DAq2DT3d9hgrY0VlxCAAuLfsT1R1RUklsSkU"
-        }
+        const response = await request('localhost:3000')
+        .get('/orders/current')
+        .set(firstUserAuthHeader)
+        
+        expect(response.body).toEqual({
+            id: 1,
+            orderStatus: 'inCart',
+            userId: 1
+        })
+        expect(response.statusCode).toEqual(200);
+    });
 
-        request('localhost:3000')
-        .get('/orders')
-        .set(tokenHeader)
-        .expect(200)
+    it('should create a new order', async () => {
+        const expectedResult = await ordersModel.create(2);
+        expect(expectedResult)
+        .toEqual({
+            id: 2,
+            orderStatus: 'inCart',
+            userId: 2
+        });
+    });
+
+    it('should get order history for user with id = 2', async () => {
+        const expectedResult = await ordersModel.ordersHistory(2);
+        expect(expectedResult)
+        .toEqual([{
+            id: 2,
+            orderStatus: 'inCart',
+            userId: 2
+        }]);
+    });
+
+    it('current order method should return the current order for user with id = 2', async () => {
+        
+        const expectedResult: Order = await ordersModel.currentOrder(2);
+        expect(expectedResult).toEqual({
+            id: 2,
+            orderStatus: 'inCart',
+            userId: 2
+        })
     });
 
 })
