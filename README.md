@@ -10,7 +10,7 @@
 **NOTE : This command will create the DB, the tables, & build the app into JS code**
 
 #### Backend PORT is: `3000`
-#### Backend PORT is: `5432`
+#### Database PORT is: `5432`
 
 ### Available Scripts
 In the project directory, you can run:
