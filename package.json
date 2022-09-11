@@ -6,8 +6,9 @@
     "build": "db-migrate db:create storefront_db && db-migrate up; tsc",
     "dev": "nodemon dist/index.js",
     "jasmine": "jasmine",
-    "test": "export ENV=test && db-migrate db:create storefront_db_test && db-migrate --env test up && yarn jasmine; db-migrate db:drop storefront_db_test",
-    "watch": "tsc -w"
+    "createTestDB": "db-migrate db:create storefront_db_test && db-migrate --env test up",
+    "watch": "tsc -w",
+    "test": "export ENV=test && start-server-and-test 'yarn dev' http://localhost:3000 'yarn createTestDB && yarn jasmine'; db-migrate db:drop storefront_db_test"
   },
   "license": "MIT",
   "dependencies": {
@@ -28,6 +29,7 @@
     "@types/pg": "^8.6.5",
     "@types/supertest": "^2.0.12",
     "jasmine-spec-reporter": "^7.0.0",
+    "start-server-and-test": "^1.14.0",
     "supertest": "^6.2.4",
     "tsconfig": "^7.0.0",
     "typescript": "^4.8.2"
